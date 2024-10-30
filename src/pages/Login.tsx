@@ -59,17 +59,17 @@ const Login: React.FC<HomeProps> = () => {
           onImpact={() => handleSectionClick("impacts")}
           toggleDashboardSidebar={toggleDashboardSidebar}
         />
-        <section className="section-bg flex flex-col md:flex-row justify-between font-roboto top-96 md:top-0 h-[100%] md:h-screen px-5 md:px-20 py-20 md:py-56">
+        <section className="section-bg flex flex-col md:flex-row justify-between font-roboto px-5 md:px-20">
           {/* Section key list, hidden on small screens */}
-          <div className="hidden md:flex w-full md:w-[30%] lg:w-[20%] text-xl font-bold flex-col space-y-10">
+          <div className="hidden md:flex w-full md:w-[30%] lg:w-[20%] text-xl font-bold flex-col">
             {Object.keys(sections).map((key) => (
               <div
                 key={key}
-                className={`text-xl font-bold flex-col rounded-md cursor-pointer ${
+                className={`text-xl font-bold flex-col home-menu rounded-md cursor-pointer ${
                   activeSection === key
                     ? "text-[#0A540E] bg-white w-full rounded-r-none"
                     : "text-[#0A540E] bg-white w-[95%]"
-                } py-10 pl-0 lg:pl-10`}
+                }`}
                 onClick={() => handleSectionClick(key as SectionKey)}
               >
                 <div className="flex flex-col items-start px-5 transition-all duration-300">

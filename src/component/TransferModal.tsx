@@ -59,7 +59,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
       }));
       setOrganizations(orgData);
     } catch (error) {
-      console.error("Error fetching organizations:", error);
+      // console.error("Error fetching organizations:", error);
     }
   };
 
@@ -73,7 +73,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         description: serviceDetails.description,
       });
     } catch (error) {
-      console.error("Error fetching service details:", error);
+      // console.error("Error fetching service details:", error);
     }
   };
 
@@ -159,7 +159,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   return (
     <>
       <Modal
-        visible={visible}
+        open={visible}
         onCancel={onCancel}
         footer={null}
         title={
@@ -170,8 +170,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
         width={800}
       >
         <h2 className="my-10">
-          This will help you transfer this application to another BeeConnect
-          partner who you think can assist the applicant better!
+          This will help you transfer this application to another AGRA partner
+          who you think can assist the applicant better!
         </h2>
 
         <Form layout="vertical">

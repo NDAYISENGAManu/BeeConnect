@@ -29,13 +29,18 @@ import transfer from "../assets/transfer.svg";
 import transfers from "../assets/transfer1.svg";
 import icoerror from "../assets/ico_error.svg";
 import { userOrganizationId } from "../helper/data.helper";
-import { getBusinessType, getLandOwnershipType, getSmeCategory } from "../types/utils";
+import {
+  getBusinessType,
+  getLandOwnershipType,
+  getSmeCategory,
+} from "../types/utils";
 import nodata from "../assets/find.svg";
 import { Application, MapLocations } from "../types/globalData";
 import { checkHasPolicy } from "../helper/app.helper";
 import TransferModal from "./TransferModal";
 import GroupTransferModal from "./GroupTransferModal";
 import EditApplicationDrawer from "./EditApplicationDrawer";
+import { base64ToBlob } from "../helper/app.helper";
 
 interface FilterPayload {
   organizationId?: string;
@@ -48,11 +53,11 @@ interface FilterPayload {
   };
 }
 
-export enum landOwnership {
-  NUBWANGE = 1,
-  NDABUKODESHA = 2,
-  BURAVANZE = 3,
-}
+// export enum landOwnership {
+//   NUBWANGE = 1,
+//   NDABUKODESHA = 2,
+//   BURAVANZE = 3,
+// }
 
 enum KnowledgeLevel {
   NOT_EXPERIENCED = 1,
@@ -244,7 +249,7 @@ const Applications: React.FC = () => {
             approvedBy: item.approvedBy,
             totalLandSizeOwned: item.totalLandSizeOwned,
             totalLandSizeAccessed: item.totalLandSizeAccessed,
-            landOwnership: item.landOwnership
+            landOwnership: item.landOwnership,
           })
         );
 
@@ -542,22 +547,6 @@ const Applications: React.FC = () => {
         return <span className={`${statusClass}`}>{statusText}</span>;
       },
     },
-    // {
-    //   title: "",
-    //   dataIndex: "transferredBy",
-    //   key: "transferredBy",
-    //   render: (transferredBy: {
-    //     id?: string;
-    //     name?: string;
-    //     when?: string;
-    //   }) => {
-    //     return transferredBy && transferredBy.id ? (
-    //       <CheckCircleOutlined style={{ color: "green" }} />
-    //     ) : (
-    //       <CloseCircleOutlined style={{ color: "red" }} />
-    //     );
-    //   },
-    // },
     {
       title: "Actions",
       key: "actions",
@@ -614,15 +603,15 @@ const Applications: React.FC = () => {
   const renderEducationLevel = (educationLevel: number) => {
     switch (educationLevel) {
       case 1:
-        return "ABANZA";
+        return "PRIMARY";
       case 2:
-        return "AYISUMBUNYE";
+        return "SECONDARY";
       case 3:
-        return "IMYUGA";
+        return "TVET";
       case 4:
-        return "KAMINUZA";
+        return "UNIVERSITY";
       case 5:
-        return "NTAYO";
+        return "NONE";
       default:
         return "-";
     }
@@ -638,6 +627,52 @@ const Applications: React.FC = () => {
         return "Experienced";
       default:
         return "Unknown";
+    }
+  };
+
+  const downloadFile = (base64: string, filename: string) => {
+    const blob = base64ToBlob(base64, "text/csv");
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
+
+  const onDownloadClick = async () => {
+    try {
+      const location: {
+        prov_id?: string;
+        dist_id?: string;
+        sect_id?: string;
+      } = {};
+
+      if (filters.prov_id) {
+        location.prov_id = filters.prov_id;
+      }
+      if (filters.dist_id) {
+        location.dist_id = filters.dist_id;
+      }
+      if (filters.sect_id) {
+        location.sect_id = filters.sect_id;
+      }
+
+      const payload: FilterPayload = {
+        organizationId: filters.organizationId,
+        serviceId: filters.serviceId,
+        approvalStatus: filters.approvalStatus,
+        location: Object.keys(location).length > 0 ? location : undefined,
+      };
+      const { data } = await api.post(`/api/v1/application/reports`, payload);
+      if (data.status == 200) {
+        const res = data.data;
+        downloadFile(res.file, "reports");
+      }
+    } catch (error) {
+      //
     }
   };
 
@@ -740,8 +775,8 @@ const Applications: React.FC = () => {
           <span>Applications</span>
         </h2>
       </div>
-      <div className="flex items-center justify-between bg-[#E8E8E8] p-2 mb-4">
-        <div className="flex items-center justify-between space-x-2 w-full">
+      <div className="flex items-center justify-between bg-[#E8E8E8] mb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full space-y-2 sm:space-y-0 sm:space-x-2 pt-2 px-2 mb-2">
           {hasAccess([], [1, 2], [1]) && (
             <>
               <select
@@ -820,7 +855,7 @@ const Applications: React.FC = () => {
           </select>
 
           <Button
-            className={`flex items-center rounded-none py-4 w-full md:w-1/4 ${
+            className={`flex items-center rounded-none h-10 w-full md:w-1/4 ${
               isAnyFilterSelected
                 ? "bg-[#0C743F] text-white"
                 : "bg-gray-300 text-black"
@@ -832,6 +867,16 @@ const Applications: React.FC = () => {
             </span>
             Filter
           </Button>
+
+          <button
+            className="bg-[#0C743F] text-sm text-white hover:text-[#0C743F] hover:bg-white border hover:border-[#0C743F] transition-colors transform-cpu flex items-center justify-center rounded-none w-full sm:w-[25%] h-10 px-2 py-2"
+            onClick={onDownloadClick}
+          >
+            <span className="mr-1">
+              <EyeFilled />
+            </span>
+            Download
+          </button>
         </div>
       </div>
       {loading ? (
@@ -981,7 +1026,7 @@ const Applications: React.FC = () => {
             )}
             {selectedRecord.totalLandSizeAccessed && (
               <p>
-                <strong>Land size accessed:</strong>{" "}
+                <strong>Land size (hectare) accessed:</strong>{" "}
                 {selectedRecord.totalLandSizeAccessed}
               </p>
             )}

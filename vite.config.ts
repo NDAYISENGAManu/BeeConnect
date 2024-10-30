@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
       port: Number(env.VITE_PORT || 3000),
       open: true,
     },
-    base: mode === "staging" ? "/BeeConnect" : "/",
+    base: mode === "staging" ? "/yeffa" : "/",
     build: {
       outDir: 'build',
       assetsDir: 'assets',

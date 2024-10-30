@@ -19,7 +19,7 @@ function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, 
+    formState: { errors },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginSchema),
   });
@@ -50,33 +50,29 @@ function LoginForm() {
           organization: response.data.data.organization || { type: 0 },
         };
 
-        login(
-          response.data.data.token,
-          response.data.data.sessionId,
-          userInfo
-        );
+        login(response.data.data.token, response.data.data.sessionId, userInfo);
         localStorage.setItem("token", token);
         navigate("/dashboard");
       } else {
-        console.error("Session ID is undefined in the response.");
+        // console.error("Session ID is undefined in the response.");
         setApiError("Login failed, session ID is missing.");
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         if (err.response) {
-          console.error("Login error status:", err.response.status);
+          // console.error("Login error status:", err.response.status);
           if (err.response.status === 500) {
             navigate("/error500");
           } else {
-            console.error("Login error message:", err.response.data.message);
+            // console.error("Login error message:", err.response.data.message);
             setApiError(err.response.data.message);
           }
         } else {
-          console.error("Network error:", err.message);
+          // console.error("Network error:", err.message);
           setApiError("Network error, please try again.");
         }
       } else {
-        console.error("Unexpected error:", err);
+        // console.error("Unexpected error:", err);
         setApiError("Unexpected error occurred.");
       }
     } finally {
@@ -140,7 +136,7 @@ function LoginForm() {
             <p className="text-red-500 text-sm">{errors.password.message}</p>
           )}
         </div>
-        <div className="flex items-center mb-4">
+        {/* <div className="flex items-center mb-4">
           <input
             type="checkbox"
             id="remember"
@@ -149,7 +145,7 @@ function LoginForm() {
           <label htmlFor="remember" className="text-sm ml-2 text-gray-700">
             Remember me
           </label>
-        </div>
+        </div> */}
         <button
           type="submit"
           className="w-full px-3 py-2 bg-[#0C743F] text-white font-bold hover:bg-[#0c743ebe] focus:outline-none rounded-none"
@@ -175,6 +171,9 @@ function LoginForm() {
             </>
           )}
         </button>
+        <div className="text-sm mt-2 text-start font-normal">
+          Forget password? <span className="text-gray-600 cursor-pointer hover:text-green-700">click here</span>
+        </div>
       </form>
       <div>&nbsp;</div>
     </div>

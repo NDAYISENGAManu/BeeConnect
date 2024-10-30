@@ -9,8 +9,9 @@ const HowItWorks: React.FC = () => {
     setActiveSection((prev) => (prev === index ? null : index));
   };
   return (
-    <div className="flex flex-col md:flex-row rounded-r-3xl md:h-[100%] lg:h-[550px]">
-      <div className="text-center w-full px-10 md:px-50 font-normal text-gray-600 py-4 md:p-8">
+    // <div className="flex flex-col md:flex-row rounded-r-3xl md:h-[100%] lg:h-[550px]">
+    <div className="flex flex-col md:flex-row rounded-r-3xl">
+      <div className="text-center w-full px-10 md:px-50 font-normal text-gray-600 py-4 md:p-8 overflow-hidden">
         <div>
           <h1 className="text-2xl text-center font-bold text-[#0E743F]">
             OUR APPROACH

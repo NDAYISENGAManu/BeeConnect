@@ -212,6 +212,16 @@ const ApplicantsReport: React.FC = () => {
             handleChange={onElementChange}
             selectOptions={services}
           />
+          <select
+            name="status"
+            className="bg-white border border-gray-300 text-[#A3A3A3] rounded-none px-2 py-2 w-full md:w-1/4"
+            onChange={onElementChange}
+          >
+            <option value="">All Status</option>
+            <option value="1">Rejected</option>
+            <option value="2">Pending</option>
+            <option value="3">Approved</option>
+          </select>
           <RangePicker
             onChange={handleDateChange}
             className="bg-white border border-gray-300 text-[#A3A3A3] rounded-none px-2 py-2 w-full md:w-2/4"

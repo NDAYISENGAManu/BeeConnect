@@ -61,7 +61,7 @@ const CommunicationsReport: React.FC = () => {
       });
       setOrganizations(response.data.data);
     } catch (error) {
-      console.error("Error fetching organizations:", error);
+      // console.error("Error fetching organizations:", error);
     }
   };
 
@@ -155,7 +155,7 @@ const CommunicationsReport: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setStatsData(response.data.data);
     } catch (error) {
-      console.error("Error fetching SMS stats:", error);
+      // console.error("Error fetching SMS stats:", error);
     } finally {
       setLoading(false);
     }

@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       const policiesString = localStorage.getItem("policies");
       return policiesString ? JSON.parse(policiesString) : null;
     } catch (e) {
-      console.error("Error parsing policies from localStorage:", e);
+      // console.error("Error parsing policies from localStorage:", e);
       return null;
     }
   });

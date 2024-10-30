@@ -368,7 +368,7 @@ const Dashboards: React.FC = () => {
 
       setServApplicationStatus(serviceApplications);
     } catch (error) {
-      console.error("Error fetching service application data:", error);
+      // console.error("Error fetching service application data:", error);
     } finally {
       setLoading(false);
     }
@@ -421,7 +421,7 @@ const Dashboards: React.FC = () => {
         setNoData(false);
       }
     } catch (error) {
-      console.error("Error fetching filtered data:", error);
+      // console.error("Error fetching filtered data:", error);
     } finally {
       setLoading(false);
     }
@@ -741,30 +741,62 @@ const Dashboards: React.FC = () => {
   );
 };
 
-const PieChartWithPaddingAngle: React.FC<Props> = ({ data, colors }) => (
-  <ResponsiveContainer width="100%" height={200}>
-    <PieChart>
-      <Pie
-        data={data}
-        cx="50%"
-        cy="50%"
-        innerRadius={50}
-        outerRadius={80}
-        fill="#8884d8"
-        dataKey="value"
-        label
-        paddingAngle={5}
-        // label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-      >
-        {data.map((_entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-        ))}
-      </Pie>
-      <Tooltip />
-      <Legend />
-    </PieChart>
-  </ResponsiveContainer>
-);
+// const PieChartWithPaddingAngle: React.FC<Props> = ({ data, colors }) => (
+//   <ResponsiveContainer width="100%" height={200}>
+//     <PieChart>
+//       <Pie
+//         data={data}
+//         cx="50%"
+//         cy="50%"
+//         innerRadius={50}
+//         outerRadius={80}
+//         fill="#8884d8"
+//         dataKey="value"
+//         label
+//         paddingAngle={5}
+//         // label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+//       >
+//         {data.map((_entry, index) => (
+//           <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+//         ))}
+//       </Pie>
+//       <Tooltip />
+//       <Legend />
+//     </PieChart>
+//   </ResponsiveContainer>
+// );
+
+const PieChartWithPaddingAngle: React.FC<Props> = ({ data, colors }) => {
+  const sortedGenderData = data.sort((a, b) => {
+    if (a.name === "Female") return -1;
+    if (b.name === "Female") return 1;
+    if (a.name === "Male") return -1;
+    if (b.name === "Male") return 1;
+    return 0;
+  });
+
+  return (
+    <ResponsiveContainer width="100%" height={250}>
+      <PieChart>
+        <Pie
+          data={sortedGenderData}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          innerRadius={50}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {sortedGenderData.map((_entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+    </ResponsiveContainer>
+  );
+};
 
 const BarCharts: React.FC<{ data: ChartData[]; colors: string[] }> = ({
   data,

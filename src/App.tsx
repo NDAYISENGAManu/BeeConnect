@@ -26,6 +26,7 @@ import CommunicationsReport from "./component/CommunicationsReport";
 import Enterprise from "./component/Enterprise";
 import MainLayout from "./component/MainLayouts";
 import EmploymentReport from "./component/EmploymentReport";
+import ForgotPassword from "./component/ForgetPassword";
 
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -66,7 +67,7 @@ function App() {
     setSidebarCollapsed(!sidebarCollapsed);
   };
 
-  const basename = import.meta.env.MODE === "staging" ? "/BeeConnect" : "/";
+  const basename = import.meta.env.MODE === "staging" ? "/" : "/";
 
   return (
     <Router basename={basename}>
@@ -97,6 +98,7 @@ function App() {
               }
             />
             <Route path="set-password" element={<SetPassword />} />
+            <Route path="forget-password" element={<ForgotPassword />} />
             <Route
               path="login"
               element={

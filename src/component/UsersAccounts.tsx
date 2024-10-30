@@ -124,7 +124,7 @@ const UsersAccounts: React.FC = () => {
       }));
       setOrganizations(orgData);
     } catch (error) {
-      console.error("Error fetching organizations:", error);
+      // console.error("Error fetching organizations:", error);
     }
   };
 
@@ -153,7 +153,7 @@ const UsersAccounts: React.FC = () => {
       setData(users);
       setTotalItems(userResponse.data.data.meta.total);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -198,7 +198,7 @@ const UsersAccounts: React.FC = () => {
           message: "National ID not found.",
         });
       } else {
-        console.error("Error fetching citizen data:", error);
+        // console.error("Error fetching citizen data:", error);
         setError("nationalId", {
           type: "manual",
           // message: "Error fetching data. Please try again.",
@@ -253,7 +253,7 @@ const UsersAccounts: React.FC = () => {
         setAddModalVisible(false);
         reset();
       } catch (error: any) {
-        console.error("Error creating user:", error);
+        // console.error("Error creating user:", error);
         setStatusCode(error.response?.status || 500);
         setStatusMessage("An error occurred while adding the user.");
         setIsSuccessModalVisible(true);

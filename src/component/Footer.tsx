@@ -29,15 +29,18 @@ const Footer = () => {
       >
         <div className="flex items-center justify-center sm:justify-start">
           <p className="text-sm font-medium ml-2 mt-2 sm:mt-0 text-[#858585]">
-            Copyright © 2024 BeeConnect - All rights reserved.
+            Copyright © 2024 Beeconnect - All rights reserved.
           </p>
         </div>
 
         <div className="flex items-center justify-center text-black mx-auto text-sm sm:ml-auto">
           <p>
-            <span className="divider">F.A.Q</span>
-            <span className="divider">Terms & Conditions</span>
-            <span className="divider cursor-pointer" onClick={showModal}>
+            {/* <span className="divider">F.A.Q</span>
+            <span className="divider">Terms & Conditions</span> */}
+            <span
+              className="divider cursor-pointer text-[#858585]"
+              onClick={showModal}
+            >
               Privacy Policy
             </span>
           </p>
@@ -57,11 +60,12 @@ const Footer = () => {
         </div>
       </div>
       <Modal
-        title={
-          <span style={{ color: "#0C743F", fontSize: "12px" }}>
-            Privacy Policy
-          </span>
-        }
+        // title={
+        //   <span style={{ color: "#0C743F", fontSize: "12px" }}>
+        //     Privacy Policy
+        //   </span>
+        // }
+        title={null}
         onCancel={handleOk}
         open={isModalVisible}
         footer={null}
@@ -71,13 +75,13 @@ const Footer = () => {
           <img
             src={logo}
             alt="Company Logo"
-            className="w-100 h-100 sm:w-16 sm:h-16 lg:w-32 lg:h-20 pointer-events-none select-none mb-4"
+            className="w-100 sm:w-16 lg:w-40 pointer-events-none select-none mb-4"
             draggable="false"
           />
           <h2 className="text-[#0C743F] text-center text-xl mb-2">
             <strong>
-              The BeeConnect youth mobilization and registration platform
-              consent form
+              The Beeconnect youth mobilization and registration platform consent
+              form
             </strong>
           </h2>
         </div>
@@ -86,13 +90,13 @@ const Footer = () => {
           <p>
             This consent form aims to ensure that youth participants who
             register on this platform are aware that their personal data will be
-            used for BeeConnect project purposes solely and will be handled with
+            used for Beeconnect project purposes solely and will be handled with
             utmost privacy. This applies to all Youth Participants and program
-            partners (BeeConnect grantees and Super aggregator partners).
+            partners (Beeconnect grantees and Super aggregator partners).
           </p>
-          <p className="text-[#0C743F] mb-2">
-            <strong>
-              CONSENT TO USE PERSONAL DATA AND INFORMATION BeeConnect
+          <p className="text-[#0C743F] mb-2 text-lg">
+            <strong className="capitalize">
+              Consent to use personal data and information in Beeconnect
             </strong>
           </p>
           <p>
@@ -100,19 +104,19 @@ const Footer = () => {
             digital platform. This information will be used for project purposes
             such as understanding the number of youths mobilized for the
             program, number of youth receiving services offered by the program,
-            and youth who secured employment through the BeeConnect program.
+            and youth who secured employment through the Beeconnect program.
           </p>
           <p>
-            The information will inform BeeConnect’s reports and publications
-            which may be shared with its partners, donors, and government
+            The information will inform Beeconnect’s reports and publications which
+            may be shared with its partners, donors, and government
             institutions.
           </p>
           <p>
-            I permit BeeConnect and its Partners to use my personal information
+            I permit Beeconnect and its Partners to use my personal information
             exclusively for program purposes and non-commercial purposes.
           </p>
-          <p className="text-[#0C743F] mb-2">
-            <strong>DECLARATION</strong>
+          <p className="text-[#0C743F] text-lg mb-2">
+            <strong>Declaration</strong>
           </p>
           <p>
             I give full consent to participate in the mobilization and

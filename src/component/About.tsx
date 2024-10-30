@@ -6,7 +6,6 @@ import avocado from "../assets/avocado.svg";
 import crop from "../assets/crop.svg";
 import chilli from "../assets/chilli.svg";
 import pourty from "../assets/pourty.svg";
-import logo from "../assets/logo.svg";
 
 const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -16,9 +15,8 @@ const About = () => {
     {
       title: "5 years",
       description: "Partnership program between",
-      logos: ["/logo.svg"],
-      program:
-        "Youth Engagement for the Future of Food and Agriculture (BeeConnect)",
+      logos: ["/"],
+      program: "Beeconnect",
       details:
         "This program aims to catalyze dignified and fulfilling work for young people, especially young women, and disadvantaged groups.",
       image: image1,
@@ -26,7 +24,7 @@ const About = () => {
     },
     {
       title:
-        "BeeConnect recognizes that the success of young entrepreneurs in agriculture hinges on a well-coordinated ecosystem that provides the support they need",
+        "Beeconnect recognizes that the success of young entrepreneurs in agriculture hinges on a well-coordinated ecosystem that provides the support they need",
       layout: "opportunity",
       image: image2,
     },
@@ -46,7 +44,7 @@ const About = () => {
         );
         setFade("fade-in");
       }, 500);
-    }, 3000);
+    }, 6000);
 
     return () => clearInterval(slideInterval);
   }, [slides.length]);
@@ -76,12 +74,12 @@ const About = () => {
       case "detailed":
         return (
           <div className="text-[#0E743F]">
-            <h1 className="text-6xl font-bold mb-4 text-[#0A540E]">
+            <h1 className="text-5xl font-bold mb-4 text-[#0A540E]">
               {slide.title}
             </h1>
             <span className="text-sm font-normal">{slide.description}</span>
             <div className="flex items-center mb-4">
-              <img src={logo} alt="Logo" className="mr-2" />
+              <img src="" alt="Logo" className="mr-2 h-full w-full" />
             </div>
             <p className="text-lg font-bold">{slide.program}</p>
             <span className="mt-4 text-sm font-normal">{slide.details}</span>
@@ -93,7 +91,7 @@ const About = () => {
             <h1 className="text-sm font-bold mb-4">{slide.title}</h1>
             <hr className="border-[#0E743F] border-1 w-full my-4" />
             <span className="text-xl font-normal">This program will reach</span>
-            <h1 className="text-5xl text-[#0A540E] font-bold my-0 py-0">
+            <h1 className="text-3xl text-[#0A540E] font-bold my-0 py-0">
               800,000
             </h1>
             <span className="text-xl text-[#0A540E] font-normal">youth,</span>
@@ -101,7 +99,7 @@ const About = () => {
             <span className="text-xl font-normal">
               which will lead to creation of
             </span>
-            <h1 className="text-5xl font-bold my-0 py-0 text-[#0A540E]">
+            <h1 className="text-3xl font-bold my-0 py-0 text-[#0A540E]">
               132,000
             </h1>
             <span className="text-xl font-normal text-[#0A540E]">
@@ -149,12 +147,12 @@ const About = () => {
       default:
         return (
           <div className="text-[#0E743F]">
-            <h1 className="text-6xl font-bold mb-4 text-[#0A540E]">
+            <h1 className="text-5xl font-bold mb-4 text-[#0A540E]">
               {slide.title}
             </h1>
             <span className="text-sm font-normal">{slide.description}</span>
             <div className="flex items-center mb-4">
-              <img src="/logo.svg" alt="Logo" className="mr-2" />
+              <img src="" alt="Logo" className="mr-2" />
             </div>
             <p className="text-lg font-bold">{slide.program}</p>
             <span className="mt-4 text-sm font-normal">{slide.details}</span>
@@ -164,7 +162,7 @@ const About = () => {
   };
 
   return (
-    <div className="w-full lg:h-[550px] px-4 md:px-10 sm:pb-10">
+    <div className="w-full px-4 md:px-10 sm:pb-10 h-auto">
       {/* Header */}
       <div>
         <h1 className="text-2xl text-left font-bold my-7 text-[#0E743F]">
@@ -174,7 +172,7 @@ const About = () => {
 
       {/* Slide Content */}
       <div
-        className={`w-full flex flex-col lg:flex-row justify-between lg:gap-10 transform transition-transform duration-1000 ease-in-out ${fade}`}
+        className={`w-full flex flex-col lg:flex-row justify-between lg:gap-5 transform transition-transform duration-1000 ease-in-out ${fade}`}
         style={{ willChange: "transform" }}
       >
         {/* Image Section */}
@@ -200,8 +198,13 @@ const About = () => {
         </div>
 
         {/* Content Section */}
-        <div className="w-full lg:w-[29%] p-5 md:p-10 text-left bg-none lg:bg-[#EBF5E5] rounded-[30px] flex flex-col justify-center">
+        {/* <div className="w-full lg:w-[29%] p-5 md:p-10 text-left bg-none lg:bg-[#EBF5E5] rounded-[30px] flex flex-col justify-center">
           <div className="flex-grow">
+            {renderSlideContent(slides[currentSlide])}
+          </div>
+        </div> */}
+        <div className="w-full lg:w-[30%] p-5 text-left bg-none lg:bg-[#EBF5E5] rounded-[30px] flex flex-col justify-center overflow-hidden">
+          <div className="flex-grow max-h-[400px] overflow-y-auto">
             {renderSlideContent(slides[currentSlide])}
           </div>
         </div>

@@ -105,14 +105,14 @@ const EditServiceDrawer: React.FC<EditServiceDrawerProps> = ({
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error(
-          "Error updating Service details:",
-          error.response?.data || error.message
-        );
+        // console.error(
+        //   "Error updating Service details:",
+        //   error.response?.data || error.message
+        // );
         setStatusCode(error.response?.status || 500);
         setStatusMessage(error.response?.data?.message || "An error occurred.");
       } else {
-        console.error("Unexpected error:", error);
+        // console.error("Unexpected error:", error);
         setStatusCode(500);
         setStatusMessage("An unexpected error occurred.");
       }

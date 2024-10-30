@@ -81,8 +81,8 @@ const Enterprise: React.FC = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
-      // 
-    }finally{
+      //
+    } finally {
       setLoading(false);
     }
   };
@@ -331,6 +331,7 @@ const Enterprise: React.FC = () => {
             <div>
               <p>
                 <strong>Name:</strong>
+                {""}
                 {previewData.name}
               </p>
               <p>
@@ -359,6 +360,7 @@ const Enterprise: React.FC = () => {
               <p>
                 <strong>Tin Number:</strong> {previewData.tinNumber}
               </p>
+              <hr className="my-2" />
               <p>
                 <strong>Owner:</strong>
               </p>

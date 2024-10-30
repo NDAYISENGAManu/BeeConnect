@@ -14,7 +14,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
 }) => {
   return (
     <Modal
-      visible={isSuccessModalVisible}
+      open={isSuccessModalVisible}
       onOk={handleSuccessModalOk}
       footer={null}
       closeIcon={<CloseOutlined />}

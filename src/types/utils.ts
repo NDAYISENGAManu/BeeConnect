@@ -3,16 +3,16 @@ import { educationLevel, employmentStatus, businessType, maritalStatus, smeCateg
 
 export const getEducationLevel = (level: number): string => {
   switch (level) {
-    case educationLevel.ABANZA:
-      return "ABANZA";
-    case educationLevel.AYISUMBUNYE:
-      return "AYISUMBUNYE";
-    case educationLevel.IMYUGA:
-      return "IMYUGA";
-    case educationLevel.KAMINUZA:
-      return "KAMINUZA";
-    case educationLevel.NTAYO:
-      return "NTAYO";
+    case educationLevel.PRIMARY:
+      return "PRIMARY";
+    case educationLevel.SECONDARY:
+      return "SECONDARY";
+    case educationLevel.TVET:
+      return "TVET";
+    case educationLevel.UNIVERSITY:
+      return "UNIVERSITY";
+    case educationLevel.NONE:
+      return "NONE";
     default:
       return "-";
   }

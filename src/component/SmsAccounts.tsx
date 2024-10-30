@@ -63,7 +63,7 @@ const SmsAccounts: React.FC = () => {
         setOrganizations(orgData);
       }
     } catch (error) {
-      console.error("Error fetching organizations:", error);
+      // console.error("Error fetching organizations:", error);
     }
   };
 
@@ -111,7 +111,7 @@ const SmsAccounts: React.FC = () => {
       setTotalItems(response.data.data.meta.total);
       setResponseStatus(response.status);
     } catch (error: any) {
-      console.error("Error fetching SMS accounts:", error);
+      // console.error("Error fetching SMS accounts:", error);
 
       if (error.response) {
         const status = error.response.status;

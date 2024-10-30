@@ -249,11 +249,11 @@ export enum geoMapType {
 }
 
 export enum educationLevel {
-  ABANZA = 1,
-  AYISUMBUNYE = 2,
-  IMYUGA = 3,
-  KAMINUZA = 4,
-  NTAYO=5
+  PRIMARY = 1,
+  SECONDARY = 2,
+  TVET = 3,
+  UNIVERSITY = 4,
+  NONE=5
 }
 
 export enum employmentStatus {
@@ -270,7 +270,7 @@ export enum paymentMethods {
 }
 
 export enum orgTypes {
-  BeeConnect = 1,
+  AGRA = 1,
   PARTNER = 2,
 }
 export enum approvalStatus {

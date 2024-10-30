@@ -8,6 +8,9 @@ import {
 } from "@ant-design/icons";
 import SessionCheck from "./SessionCheck";
 import { checkHasPolicy } from "../helper/app.helper";
+import { useAuth } from "../context/AuthContext";
+import { Button, Modal } from "antd";
+import LoadingPage from "./LoadingPage";
 
 interface MainLayoutProps {
   sidebarCollapsed: boolean;
@@ -29,11 +32,37 @@ const hasAccess = (
   return checkHasPolicy(requiredPolicies, requiredRole, requiredOrgType);
 };
 
-const MainLayout: React.FC<MainLayoutProps> = ({ sidebarCollapsed }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({
+  sidebarCollapsed,
+  setSidebarCollapsed,
+}) => {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLogoutModalVisible, setIsLogoutModalVisible] = useState(false);
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const isSmartphone = window.innerWidth < 768;
+
+  const showLogoutModal = () => {
+    setIsLogoutModalVisible(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setIsLogoutModalVisible(false);
+    setIsLoading(true);
+    setTimeout(() => {
+      logout();
+      window.location.href = "/login";
+    }, 3000);
+  };
+
+  const handleLogoutCancel = () => {
+    setIsLogoutModalVisible(false);
+  };
+
   //@ts-ignore
   const menuItems: MenuItem[] = [
     { key: "1", label: "Dashboard", path: "/dashboard" },
@@ -96,7 +125,34 @@ const MainLayout: React.FC<MainLayoutProps> = ({ sidebarCollapsed }) => {
       ? { key: "11", label: "Permissions", path: "/permissions" }
       : null,
     { key: "12", label: "Enterprises", path: "/enterprises" },
+    isSmartphone
+      ? {
+          key: "logout",
+          label: "Logout",
+          onClick: () => showLogoutModal(),
+          children: null,
+        }
+      : null,
   ].filter(Boolean);
+
+  useEffect(() => {
+    // Collapse sidebar by default on smartphones
+    if (window.innerWidth < 768) {
+      setSidebarCollapsed(true);
+    }
+
+    // Handle resizing
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSidebarCollapsed(true);
+      } else {
+        setSidebarCollapsed(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setSidebarCollapsed]);
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -115,17 +171,29 @@ const MainLayout: React.FC<MainLayoutProps> = ({ sidebarCollapsed }) => {
         }
       });
     }
-    if (foundItem) setActiveItem(foundItem.key); 
+    if (foundItem) setActiveItem(foundItem.key);
   }, [location.pathname]);
 
   const handleMenuClick = (item: MenuItem) => {
+    if (item.key === "logout") {
+      showLogoutModal();
+      return;
+    }
+
     if (!item.children) {
       navigate(item.path);
+      if (isSmartphone) {
+        setSidebarCollapsed(true);
+      }
     }
   };
 
+
   const handleParentMenuClick = (key: string) => {
     setExpandedMenu((prev) => (prev === key ? null : key));
+    if (isSmartphone) {
+      setSidebarCollapsed(true);
+    }
   };
 
   const renderMenuItems = (items: MenuItem[]): JSX.Element[] => {
@@ -176,6 +244,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ sidebarCollapsed }) => {
     });
   };
 
+  const styles = {
+    mask: {
+      backgroundColor: "#0C743FC9",
+    },
+    body: {
+      borderRadius: "0 !important",
+    },
+  };
+
   return (
     <div className="w-full font-roboto mt-24 relative">
       <aside
@@ -192,6 +269,32 @@ const MainLayout: React.FC<MainLayoutProps> = ({ sidebarCollapsed }) => {
         <SessionCheck />
         <Outlet />
       </div>
+      <Modal
+        onOk={handleLogoutConfirm}
+        onCancel={handleLogoutCancel}
+        okText="Logout"
+        cancelText="Cancel"
+        title={
+          <span style={{ color: "#008532", fontSize: "20px" }}>
+            Confirm Logout
+          </span>
+        }
+        open={isLogoutModalVisible}
+        closeIcon={null}
+        styles={styles}
+        width={700}
+        footer={null}
+      >
+        <p className="my-5 text-medium">Are you sure you want to logout?</p>
+        <Button
+          key="ok"
+          onClick={handleLogoutConfirm}
+          className="w-full p-5 bg-[#0C743F] text-white font-bold rounded-none"
+        >
+          OK
+        </Button>
+      </Modal>
+      {isLoading && <LoadingPage />}
     </div>
   );
 };

@@ -239,7 +239,7 @@ const Permission: React.FC = () => {
             <option value="" disabled>
               Select Partner
             </option>
-            <option value={1}>BeeConnect</option>
+            <option value={1}>AGRA</option>
             <option value={2}>PARTNER</option>
           </select>
         </div>
@@ -335,7 +335,7 @@ const Permission: React.FC = () => {
       >
         <p>
           <strong>Organization:</strong>{" "}
-          {selectedOrg === 1 ? "BeeConnect" : "PARTNER"}
+          {selectedOrg === 1 ? "AGRA" : "PARTNER"}
         </p>
         <p>
           <strong>Role:</strong>{" "}

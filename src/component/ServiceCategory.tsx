@@ -80,7 +80,7 @@ const ServiceCategory: React.FC = () => {
       setServiceCategories(response.data.data);
       setTotalItems(response.data.meta.total);
     } catch (error) {
-      console.error("Error fetching service categories:", error);
+      // console.error("Error fetching service categories:", error);
     } finally {
       setLoading(false);
     }

@@ -54,7 +54,7 @@ const EditFarmerDrawer: React.FC<EditFarmerDrawerProps> = ({
         });
         setRegions(response.data.data);
       } catch (error) {
-        console.error("Error fetching locations:", error);
+        // console.error("Error fetching locations:", error);
       }
     };
     fetchLocations();
@@ -118,15 +118,15 @@ const EditFarmerDrawer: React.FC<EditFarmerDrawerProps> = ({
       location: {
         province: {
           _id: selectedRecord?.location?.province?._id,
-          name: values.region || selectedRecord?.location?.province?.name, // Correctly map region (province)
+          name: values.region || selectedRecord?.location?.province?.name,
         },
         district: {
           _id: selectedRecord?.location?.district?._id,
-          name: values.district || selectedRecord?.location?.district?.name, // Correctly map district
+          name: values.district || selectedRecord?.location?.district?.name,
         },
         sector: {
           _id: selectedRecord?.location?.sector?._id,
-          name: sectorName || selectedRecord?.location?.sector?.name, // Ensure sector is a string
+          name: sectorName || selectedRecord?.location?.sector?.name,
         },
       },
       smeCategory: values.smeCategory,
@@ -157,14 +157,14 @@ const EditFarmerDrawer: React.FC<EditFarmerDrawerProps> = ({
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error(
-          "Error updating applicant details:",
-          error.response?.data || error.message
-        );
+        // console.error(
+        //   "Error updating applicant details:",
+        //   error.response?.data || error.message
+        // );
         setStatusCode(error.response?.status || 500);
         setStatusMessage(error.response?.data?.message || "An error occurred.");
       } else {
-        console.error("Unexpected error:", error);
+        // console.error("Unexpected error:", error);
         setStatusCode(500);
         setStatusMessage("An unexpected error occurred.");
       }
@@ -243,13 +243,13 @@ const EditFarmerDrawer: React.FC<EditFarmerDrawerProps> = ({
           console.error("No data found for this National ID.");
         }
       })
-      .catch((error) => {
+      .catch(() => {
         // Clear the fields on error
         form.setFieldsValue({
           firstName: "",
           lastName: "",
         });
-        console.error("Error fetching citizen data:", error);
+        // console.error("Error fetching citizen data:", error);
       });
   };
 
@@ -263,9 +263,8 @@ const EditFarmerDrawer: React.FC<EditFarmerDrawerProps> = ({
         }
         width={800}
         onClose={onClose}
-        visible={visible}
-        bodyStyle={styles.body}
-        maskStyle={styles.mask}
+        open={visible}
+        styles={styles}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <div className="grid gap-6 mb-6 md:grid-cols-2">

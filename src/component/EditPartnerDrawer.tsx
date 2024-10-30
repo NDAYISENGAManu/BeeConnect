@@ -286,9 +286,8 @@ const EditPartnerDrawer: React.FC<EditPartnerDrawerProps> = ({
         }
         width={800}
         onClose={onClose}
-        visible={visible}
-        bodyStyle={styles.body}
-        maskStyle={styles.mask}
+        open={visible}
+        styles={styles}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <div className="grid gap-6 m-0 p-0 md:grid-cols-2">
@@ -309,7 +308,7 @@ const EditPartnerDrawer: React.FC<EditPartnerDrawerProps> = ({
                 <Select
                   options={[
                     { label: "Partner", value: 2 },
-                    { label: "BeeConnect", value: 1 },
+                    { label: "Agra", value: 1 },
                   ]}
                   placeholder="Select type"
                   disabled

@@ -81,14 +81,14 @@ const EditApplicationDrawer: React.FC<EditApplicationDrawerProps> = ({
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error(
-          "Error updating application details:",
-          error.response?.data || error.message
-        );
+        // console.error(
+        //   "Error updating application details:",
+        //   error.response?.data || error.message
+        // );
         setStatusCode(error.response?.status || 500);
         setStatusMessage(error.response?.data?.message || "An error occurred.");
       } else {
-        console.error("Unexpected error:", error);
+        // console.error("Unexpected error:", error);
         setStatusCode(500);
         setStatusMessage("An unexpected error occurred.");
       }
@@ -157,7 +157,7 @@ const EditApplicationDrawer: React.FC<EditApplicationDrawerProps> = ({
               <Form.Item
                 name="landSize"
                 className=" rounded-none"
-                label={<span style={styles.label}>Land Size</span>}
+                label={<span style={styles.label}>Land Size (hectare)</span>}
               >
                 <Input className=" rounded-none" disabled />
               </Form.Item>

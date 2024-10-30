@@ -308,7 +308,7 @@ const SendSms: React.FC = () => {
       setSmsData(response.data.data.data);
       setTotalItems(response.data.data.meta.total);
     } catch (error) {
-      console.error("Error fetching SMS data:", error);
+      // console.error("Error fetching SMS data:", error);
     } finally {
       setLoading(false);
     }

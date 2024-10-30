@@ -1,7 +1,7 @@
 import {
   EnvironmentOutlined,
   FacebookOutlined,
-  InstBeeConnectmOutlined,
+  InstagramOutlined,
   LinkedinOutlined,
   MailOutlined,
   SendOutlined,
@@ -41,7 +41,7 @@ const Contacts: React.FC = () => {
               <MailOutlined className="text-6xl mx-3" />
               <div className="font-normal text-start">
                 <h2 className="text-green-900 text-sm font-semibold">Email</h2>
-                <p className="text-sm font-normal">info@BeeConnect.org</p>
+                <p className="text-sm font-normal">webmasterio2015@gmail.com</p>
               </div>
             </div>
           </div>
@@ -56,32 +56,16 @@ const Contacts: React.FC = () => {
                   Social Media
                 </h2>
                 <div className="flex justify-center mt-2">
-                  <a
-                    href="https://www.facebook.com/BeeConnectAlliance?_rdc=1&_rdr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="" target="_blank" rel="noopener noreferrer">
                     <FacebookOutlined className="text-xl mx-1 text-green-900 cursor-pointer" />
                   </a>
-                  <a
-                    href="https://x.com/BeeConnect_Africa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="" target="_blank" rel="noopener noreferrer">
                     <TwitterCircleFilled className="text-xl mx-1 text-green-900 cursor-pointer" />
                   </a>
-                  <a
-                    href="https://www.instBeeConnectm.com/BeeConnect_africa/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <InstBeeConnectmOutlined className="text-xl mx-1 text-green-900 cursor-pointer" />
+                  <a href="" target="_blank" rel="noopener noreferrer">
+                    <InstagramOutlined className="text-xl mx-1 text-green-900 cursor-pointer" />
                   </a>
-                  <a
-                    href="https://www.linkedin.com/company/BeeConnectalliance/?originalSubdomain=ke"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="" target="_blank" rel="noopener noreferrer">
                     <LinkedinOutlined className="text-xl mx-1 text-green-900 cursor-pointer" />
                   </a>
                 </div>

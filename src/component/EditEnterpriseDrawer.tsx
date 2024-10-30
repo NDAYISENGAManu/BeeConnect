@@ -82,14 +82,14 @@ const EditEnterpriseDrawer: React.FC<EditEnterpriseDrawerProps> = ({
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error(
-          "Error updating enterprise details:",
-          error.response?.data || error.message
-        );
+        // console.error(
+        //   "Error updating enterprise details:",
+        //   error.response?.data || error.message
+        // );
         setStatusCode(error.response?.status || 500);
         setStatusMessage(error.response?.data?.message || "An error occurred.");
       } else {
-        console.error("Unexpected error:", error);
+        // console.error("Unexpected error:", error);
         setStatusCode(500);
         setStatusMessage("An unexpected error occurred.");
       }
@@ -170,7 +170,7 @@ const EditEnterpriseDrawer: React.FC<EditEnterpriseDrawerProps> = ({
         }
         width={800}
         onClose={onClose}
-        visible={visible}
+        open={visible}
         styles={styles}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>

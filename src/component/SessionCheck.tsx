@@ -13,7 +13,7 @@ const SessionCheck: React.FC = () => {
     try {
       return jwtDecode<{ exp: number }>(token);
     } catch (error) {
-      console.error("Failed to decode token:", error);
+      // console.error("Failed to decode token:", error);
       return null;
     }
   };

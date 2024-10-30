@@ -42,6 +42,13 @@ export interface OrganizationServices {
   _id: string;
   name: string;
 }
+
+const statusOptions = [
+  { label: "Rejected", value: 1 },
+  { label: "Pending", value: 2 },
+  { label: "Approved", value: 3 },
+];
+
 const Farmers: React.FC = () => {
   const [data, setData] = useState<Farmer[]>([]);
   const [loading, setLoading] = useState(false);
@@ -513,6 +520,7 @@ const Farmers: React.FC = () => {
               className="border-gray-300 text-[#A3A3A3] flex w-full sm:w-[25%] h-10"
               onChange={(value) => onSelectOrganization(value)}
               placeholder="Select by Partner"
+              allowClear
             >
               {organizations.map((org) => (
                 <Select.Option key={org._id} value={org._id}>
@@ -525,6 +533,7 @@ const Farmers: React.FC = () => {
             className="border-gray-300 text-[#A3A3A3] flex w-full sm:w-[25%] h-10"
             onChange={(value) => onSelectService(value)}
             placeholder="Select Services"
+            allowClear
           >
             {activeServices.map((service) => (
               <Select.Option key={service._id} value={service._id}>
@@ -707,10 +716,7 @@ const Farmers: React.FC = () => {
           <button
             type="submit"
             onClick={handleContactsFileUpload}
-            disabled={
-              isSubmitDisabled ||
-              isUploading 
-            }
+            disabled={isSubmitDisabled || isUploading}
             className="bg-[#0C743F] text-white hover:text-[#0C743F] hover:bg-white border hover:border-[#0C743F] rounded-none py-2 px-8 my-2 transition-colors font-bold cursor-pointer"
           >
             {isUploading ? (

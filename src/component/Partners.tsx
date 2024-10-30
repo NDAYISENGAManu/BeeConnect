@@ -75,7 +75,7 @@ const Partners: React.FC = () => {
         // message.error("Failed to fetch data");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -337,7 +337,7 @@ const Partners: React.FC = () => {
             </p>
             <p>
               <strong>Type:</strong>{" "}
-              {previewData.type === 1 ? "BeeConnect" : "Partner"}
+              {previewData.type === 1 ? "Agra" : "Partner"}
             </p>
             <p>
               <strong>Description:</strong> {previewData.description}

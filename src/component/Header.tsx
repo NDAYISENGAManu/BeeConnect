@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo.svg";
-import line from "../assets/Line.svg";
+// import logo from "../assets/logo.svg";
+// import line from "../assets/Line.svg";
 import toggleMenu from "../assets/menu-toggle.svg";
 import {
   CaretDownOutlined,
-  // GlobalOutlined,
-  QuestionCircleOutlined,
   UserOutlined,
   CloseOutlined,
   LogoutOutlined,
@@ -57,6 +55,10 @@ const Header: React.FC<HeaderProps> = ({
       logout();
       window.location.href = "/login";
     }, 3000);
+  };
+
+  const handleBaseUrl = () => {
+    window.location.replace("/");
   };
 
   const handleLogoutCancel = () => {
@@ -120,15 +122,19 @@ const Header: React.FC<HeaderProps> = ({
     <>
       <header className="header text-[#0C743F] px-4 sm:px-16 py-2 w-full font-roboto flex justify-between items-center fixed top-0">
         <div className="flex items-center">
-          <img
+          {/* <img
             src={logo}
+            onClick={handleBaseUrl}
             alt="Company Logo"
-            className="w-30 h-30 sm:w-16 sm:h-16 lg:w-32 lg:h-20  lg:mx-4"
+            className="w-30 h-30 sm:w-16 sm:h-16 lg:w-32 lg:h-20  lg:mx-4 cursor-pointer"
             // draggable="false"
           />
-          <img src={line} alt="Line" className="w-10 h-10 lg:mx-2" />
-          <h2 className="text-mdyy sm:text-xl lg:text-2xl font-bold ml-2 mt-2">
-            BeeConnect
+          <img src={line} alt="Line" className="w-10 h-10 lg:mx-2" /> */}
+          <h2
+            className="text-mdyy sm:text-xl lg:text-2xl font-bold ml-2 mt-2 cursor-pointer"
+            onClick={handleBaseUrl}
+          >
+            Beeconnect
           </h2>
         </div>
 
@@ -192,17 +198,6 @@ const Header: React.FC<HeaderProps> = ({
           } font-normal bg-[#0C743F] my-2 mx-2 divide-y divide-gray-100 rounded-lg shadow w-[96%] h-fit md:hidden`}
         >
           <ul className="py-2 px-2 text-sm">
-            <li className="text-white hover:text-[#0C743F]">
-              <a
-                href="#"
-                className="block px-4 py-2 hover:bg-gray-100 rounded-lg"
-              >
-                <div className="flex flex-col items-center">
-                  <QuestionCircleOutlined style={{ fontSize: "24px" }} />
-                  <span className="text-sm mt-1">SUPPORT</span>
-                </div>
-              </a>
-            </li>
             <li className="text-white hover:text-[#0C743F]">
               <a
                 href="#"
@@ -277,16 +272,6 @@ const Header: React.FC<HeaderProps> = ({
         </div>
 
         <div className="hidden md:flex md:items-center space-x-4">
-          {!sessionId && (
-            <>
-              <div className="flex items-center gap-8">
-                <div className="flex flex-col items-center">
-                  <QuestionCircleOutlined style={{ fontSize: "24px" }} />
-                  <span className="text-sm mt-1">SUPPORT</span>
-                </div>
-              </div>
-            </>
-          )}
           <div
             className="flex flex-row items-center gap-2 cursor-pointer"
             onClick={() => {
@@ -328,7 +313,7 @@ const Header: React.FC<HeaderProps> = ({
             Confirm Logout
           </span>
         }
-        visible={isLogoutModalVisible}
+        open={isLogoutModalVisible}
         closeIcon={null}
         styles={styles}
         width={700}

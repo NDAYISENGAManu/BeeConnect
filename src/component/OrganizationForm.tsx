@@ -143,7 +143,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({
         }));
         setDistrictOptions(districtOptions);
       } catch (error) {
-        console.error("Error fetching districts:", error);
+        // console.error("Error fetching districts:", error);
       }
     };
 
@@ -442,7 +442,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({
                         field.onChange(value);
                       }}
                     >
-                      <Select.Option value={1}>BeeConnect</Select.Option>
+                      <Select.Option value={1}>AGRA</Select.Option>
                       <Select.Option value={2}>PARTNER</Select.Option>
                     </Select>
                   </div>
@@ -1058,7 +1058,7 @@ const PartnerForm: React.FC<PartnerFormProps> = ({
                 </p>
                 <p>
                   <strong>Organization Type:</strong>{" "}
-                  {previewData.type === 1 ? "BeeConnect" : "PARTNER"}
+                  {previewData.type === 1 ? "AGRA" : "PARTNER"}
                 </p>
                 <p>
                   <strong>Description:</strong> {previewData.description}

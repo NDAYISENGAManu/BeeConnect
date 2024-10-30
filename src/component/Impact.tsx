@@ -8,7 +8,8 @@ import included from "../assets/included.svg";
 
 const Impacts: React.FC = () => {
   return (
-    <div className="flex flex-col lg:flex-row rounded-r-3xl h-auto lg:h-[550px]">
+    // <div className="flex flex-col lg:flex-row rounded-r-3xl h-auto lg:h-[550px]">
+    <div className="flex flex-col lg:flex-row rounded-r-3xl">
       <div className="flex-1 px-10 md:px-4 sm:px-10 lg:px-20 py-6 lg:py-10 text-start">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-[#0E743F] text-start">
           IMPACT
